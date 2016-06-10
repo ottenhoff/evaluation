@@ -213,6 +213,8 @@ div.scaleDesc {
   padding: .5em 0;
   background: #ffe;
   margin: 1em 0;
+  clear: both;
+  height: 1.5em;
 }
 
 .navIntraTool .breadCrumb {
@@ -225,6 +227,7 @@ div.scaleDesc {
   background: #ffffee url(../images/breadSep.gif) center right no-repeat;
   padding: 0 1.2em 0  .5em;
   margin: 0;
+  float: left;
 }
 
 .breadCrumb li:first-child {
@@ -234,6 +237,16 @@ div.scaleDesc {
 .breadCrumb li.lastCrumb {
   display: inline;
   background-image: none;
+  float: right;
+}
+
+.breadCrumb li.lastCrumbNoFloat {
+  display: inline;
+  background-image: none;
+}
+
+.inlineBlockForm {
+    display: inline-block;
 }
 
 /*sub-breadcrumb for wizards deep inside of a workflow*/
@@ -361,8 +374,7 @@ ol.summaryEvaluateList {
 .scaleOuterList {
   width: 60%;
   padding: 0;
-  margin: 1em 0;
-  list-style: decimal;
+  list-style: none;
 }
 
 .scaleInnerList {
@@ -378,7 +390,6 @@ ol.summaryEvaluateList {
 }
 
 .scaleTitleLine {
-  height: 1.5em;
   overflow: hidden;
   background: #eee;
   padding: 0.3em;
@@ -1011,7 +1022,6 @@ form {
   font-family: verdana,arial;
   font-size: 100%;
   color: #27d;
-  padding: .2em .3em 1px 0;
   white-space: nowrap;
 }
 
@@ -1042,6 +1052,13 @@ form {
   padding: .2em;
   color: orange;
   margin-left: 1em;
+  display: inline;
+  width: auto;
+  border: none;
+}
+
+.checkbox input[type="checkbox"] {
+  margin-left: auto;
 }
 
 label.block {
@@ -1505,19 +1522,6 @@ a.less {
   color: orange;
   font-size: 110%;
   margin-left: 1em;
-}
-
-.evalAdminTable {
-  border: 1px solid #eee;
-  margin-top: 20px;
-}
-
-.evalAdminTable thead tr {
-  background: #ccc;
-}
-
-.evalAdminTable td {
-  padding: 0 20px;
 }
 
 .column {
