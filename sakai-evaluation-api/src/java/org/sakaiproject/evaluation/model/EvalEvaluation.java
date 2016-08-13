@@ -818,7 +818,9 @@ public class EvalEvaluation implements java.io.Serializable {
     }
 
     public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+        if (startDate != null && !EvalUtils.safeBool(this.useDateTimes, true)) {
+        	this.startDate = startDate;
+        }
     }
 
     public Date getDueDate() {
@@ -858,7 +860,9 @@ public class EvalEvaluation implements java.io.Serializable {
     }
 
     public void setViewDate(Date viewDate) {
-        this.viewDate = viewDate;
+        if (viewDate != null && !EvalUtils.safeBool(this.useDateTimes, true)) {
+        	this.viewDate = viewDate;
+        }
     }
 
     public Date getStudentsDate() {
