@@ -128,7 +128,7 @@
           <id>sakai-11</id>
           <activation>
             <activeByDefault>true</activeByDefault>
-            <property><name>sakai-10</name></property>
+            <property><name>sakai-12</name></property>
           </activation>
             <modules>
                 <module>sakai-evaluation-api</module>
