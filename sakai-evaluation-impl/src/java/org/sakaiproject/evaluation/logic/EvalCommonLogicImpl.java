@@ -242,8 +242,7 @@ public class EvalCommonLogicImpl implements EvalCommonLogic {
     public List<EvalUser> getEvalUsersByIds(String[] userIds) {
         List<EvalUser> users = new ArrayList<EvalUser>();
         boolean foundAll = false;
-        if (userIds == null 
-                || userIds.length == 0) {
+        if (userIds == null || userIds.length == 0) {
             foundAll = true;
         }
 
@@ -251,7 +250,7 @@ public class EvalCommonLogicImpl implements EvalCommonLogic {
         if (! foundAll) {
             // get users from external
             externalUsers = externalLogic.getEvalUsersByIds(userIds);
-            if (users.size() == userIds.length) {
+            if (externalUsers.size() == userIds.length) {
                 foundAll = true;
             }
         }
@@ -265,10 +264,9 @@ public class EvalCommonLogicImpl implements EvalCommonLogic {
         /* now put the users into the list in the original order of the array 
          * with INVALID EvalUser objects in place of not-found users
          */
-        if (! foundAll) {
-            for (int i = 0; i < userIds.length; i++) {
-                String userId = userIds[i];
-                EvalUser user = null;
+        if (userIds != null && userIds.length > 0) {
+            for( String userId : userIds ) {
+                EvalUser user;
                 if (adhocUsers.containsKey(userId)) {
                     EvalAdhocUser adhocUser = adhocUsers.get(userId);
                     user = new EvalUser(adhocUser.getUserId(), EvalConstants.USER_TYPE_INTERNAL,
@@ -633,8 +631,8 @@ public class EvalCommonLogicImpl implements EvalCommonLogic {
             }
         }
 
-        if (l == null || l.size() <= 0) {
-            log.warn("No users with email addresses found in the provided userIds ("+ArrayUtils.arrayToString(toUserIds)+"), cannot send email so exiting");
+        if (toEmails.isEmpty()) {
+            LOG.warn("No users with email addresses found in the provided userIds ("+ArrayUtils.arrayToString(toUserIds)+"), cannot send email so exiting");
             return new String[] {};
         }
 
