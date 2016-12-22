@@ -24,6 +24,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.sakaiproject.evaluation.constant.EvalConstants;
@@ -40,6 +41,7 @@ import org.sakaiproject.evaluation.model.EvalEvaluation;
 import org.sakaiproject.evaluation.utils.ArrayUtils;
 import org.sakaiproject.evaluation.utils.EvalUtils;
 import org.sakaiproject.evaluation.utils.TextTemplateLogicUtils;
+import org.sakaiproject.util.ResourceLoader;
 
 /**
  * EvalEmailsLogic implementation,
@@ -84,6 +86,7 @@ public class EvalEmailsLogicImpl implements EvalEmailsLogic {
         
     }
 
+    protected static ResourceLoader rb = new ResourceLoader("eval-emailMessage");
 
     /* (non-Javadoc)
      * @see org.sakaiproject.evaluation.logic.EvalEmailsLogic#sendEvalCreatedNotifications(java.lang.Long, boolean)
