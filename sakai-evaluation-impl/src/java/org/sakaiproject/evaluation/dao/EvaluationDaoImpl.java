@@ -57,6 +57,8 @@ import org.sakaiproject.genericdao.api.search.Restriction;
 import org.sakaiproject.genericdao.api.search.Search;
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 
+import static org.sakaiproject.event.cover.UsageSessionService.getSession;
+
 /**
  * This is the more specific Evaluation data access interface,
  * it should contain specific DAO methods, the generic ones
@@ -91,12 +93,12 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     public void forceCommit() {
         getHibernateTemplate().flush(); // this should sync the data immediately
         // do a commit using the current transaction or make a new one
-        if (getSession().getTransaction() != null) {
-            getSession().getTransaction().commit();
-            getSession().beginTransaction(); // start a new one
+        if (currentSession().getTransaction() != null) {
+            currentSession().getTransaction().commit();
+            currentSession().beginTransaction(); // start a new one
         } else {
             // establish a transaction and then force the commit
-            getSession().beginTransaction().commit();
+            currentSession().beginTransaction().commit();
         }
         // should probably use the org.springframework.transaction.PlatformTransactionManager
     }
@@ -107,12 +109,12 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     public void forceRollback() {
         getHibernateTemplate().clear(); // clear pending data
         // do a rollback using the current transaction or make a new one
-        if (getSession().getTransaction() != null) {
-            getSession().getTransaction().rollback();
-            getSession().beginTransaction(); // start a new one
+        if (currentSession().getTransaction() != null) {
+            currentSession().getTransaction().rollback();
+            currentSession().beginTransaction(); // start a new one
         } else {
             // establish a transaction and then force the rollback
-            getSession().beginTransaction().rollback();
+            currentSession().beginTransaction().rollback();
         }
     }
 
@@ -123,7 +125,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     protected void forceEvict(Serializable object) {
         boolean active = false;
         try {
-            Session session = getSession();
+            Session session = currentSession();
             if (session.isOpen() && session.isConnected()) {
                 if (session.contains(object)) {
                     active = true;
@@ -1380,7 +1382,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
                 // from EvalAdhocGroup ag join ag." + permCheck + " userIds where userIds.id = :userId
                 String hql = "select count(ag) from EvalAdhocGroup ag join ag." + permCheck + " userIds "
                 + " where ag.id = " + id + " and userIds.id = '" + userId + "'";
-                Query query = getSession().createQuery(hql);
+                Query query = currentSession().createQuery(hql);
                 int count = ( (Number) query.iterate().next() ).intValue();
                 if (count >= 1) {
                     allowed = true;
@@ -1596,8 +1598,8 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
 
                 // This is a horrible hack to try to work around hibernate stupidity
                 evaluation.setLocked(Boolean.TRUE);
-                getSession().merge(evaluation);
-                getSession().evict(evaluation);
+                currentSession().merge(evaluation);
+                currentSession().evict(evaluation);
                 return true;
             }
         } else {
@@ -1609,8 +1611,8 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
                 // unlock evaluation
                 // This is a horrible hack to try to work around hibernate stupidity
                 evaluation.setLocked(Boolean.FALSE);
-                getSession().merge(evaluation);
-                getSession().evict(evaluation);
+                currentSession().merge(evaluation);
+                currentSession().evict(evaluation);
 
                 // unlock associated templates if there are any
                 if (evaluation.getTemplate() != null) {
@@ -1809,7 +1811,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     @SuppressWarnings("rawtypes")
 	public int countDistinctGroupsInConsolidatedEmailMapping() {
     	String hql = "select count(distinct groupId) from EvalEmailProcessingData";
-    	Session session = getSession();
+    	Session session = currentSession();
     	
         Query query = session.createQuery(hql);
     	
@@ -1844,7 +1846,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     	
     	List<Map<String,Object>> rv = new ArrayList<Map<String,Object>>();
     	
-    	Session session = getSession();
+    	Session session = currentSession();
     	
         Query query = session.createQuery(query1);
         query.setFirstResult(pageSize * page);
@@ -1949,7 +1951,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
      */
 	public int resetConsolidatedEmailRecipients() {
 		String deleteHql = "delete from EvalEmailProcessingData";
-		Query query = getSession().createQuery(deleteHql);
+		Query query = currentSession().createQuery(deleteHql);
 		return query.executeUpdate();
 	}
 	
@@ -2004,7 +2006,7 @@ public class EvaluationDaoImpl extends HibernateGeneralGenericDao implements Eva
     		}
     	}
 		
-    	Query query = getSession().createQuery(queryBuf.toString());
+    	Query query = currentSession().createQuery(queryBuf.toString());
     	
     	for(Map.Entry<String,Object> entry : params.entrySet()) {
     		if(entry.getValue() instanceof Date) {
