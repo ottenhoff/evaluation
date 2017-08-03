@@ -118,6 +118,7 @@ public class TextTemplateLogicUtils {
         Template template;
         try {
             template = new Template("textProcess", new StringReader(textTemplate), freemarkerConfig);
+            if (replacementValues == null) return textTemplate;
         } catch (IOException e) {
             throw new RuntimeException("Failure while creating freemarker template", e);
         }
@@ -132,6 +133,23 @@ public class TextTemplateLogicUtils {
         }
 
         return output.toString();
+    }
+    
+    public static boolean checkTextTemplate(String textTemplate) {
+
+        if (textTemplate == null || textTemplate.equals("")) {
+        	return false;
+        }
+        
+        try
+        {
+        	String validTemplate = processFreemarkerTextTemplate(textTemplate, null);
+        }
+        catch (RuntimeException e)
+        {
+        	return false;
+        }
+        return true;
     }
 
     private static VelocityEngine velocityEngine = null;
