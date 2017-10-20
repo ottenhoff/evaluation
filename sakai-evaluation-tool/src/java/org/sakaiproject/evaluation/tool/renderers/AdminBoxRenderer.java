@@ -197,9 +197,9 @@ public class AdminBoxRenderer {
 
                     String title = humanDateRenderer.renderEvalTitle(eval, group);
                     
-                    if(userReadonlyAdmin) {
-                    	// only ever show the preview
-                    	UIInternalLink evalTitleLink = UIInternalLink.make(evalrow, "evalAdminTitleLink_preview", title, new EvalViewParameters(
+                    if(userReadonlyAdmin && !currentUserId.equals(eval.getOwner()) ) {
+                        // only ever show the preview
+                        UIInternalLink evalTitleLink = UIInternalLink.make(evalrow, "evalAdminTitleLink_preview", title, new EvalViewParameters(
                                 PreviewEvalProducer.VIEW_ID, eval.getId(), eval.getTemplate().getId()));
                         evalTitleLink.decorate( new UITooltipDecorator( UIMessage.make("controlevaluations.eval.title.tooltip")) );
                     } else {
@@ -227,9 +227,9 @@ public class AdminBoxRenderer {
 
                     boolean allowedViewResponders = true;
                     boolean allowedEmailStudents = true;
-                    if(userReadonlyAdmin) {
-                    	allowedViewResponders = false;
-                    	allowedEmailStudents = false;
+                    if(userReadonlyAdmin && !currentUserId.equals(eval.getOwner())) {
+                        allowedViewResponders = false;
+                        allowedEmailStudents = false;
                     }
                     RenderingUtils.renderReponseRateColumn(evalrow, eval.getId(), responsesNeeded, 
                             responseString, allowedViewResponders, allowedEmailStudents);
