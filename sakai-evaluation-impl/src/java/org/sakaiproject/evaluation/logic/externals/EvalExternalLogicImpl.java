@@ -100,7 +100,6 @@ import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SitePage;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.site.api.ToolConfiguration;
-import org.sakaiproject.time.api.TimeService;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.ToolManager;
@@ -209,11 +208,6 @@ public class EvalExternalLogicImpl implements EvalExternalLogic {
     protected ScheduledInvocationManager scheduledInvocationManager;
     public void setScheduledInvocationManager(ScheduledInvocationManager scheduledInvocationManager) {
         this.scheduledInvocationManager = scheduledInvocationManager;
-    }
-
-    protected TimeService timeService;
-    public void setTimeService(TimeService timeService) {
-        this.timeService = timeService;
     }
 
     protected ClusterService clusterService;
@@ -1143,7 +1137,7 @@ public class EvalExternalLogicImpl implements EvalExternalLogic {
     public String createScheduledJob(Date executionDate, Long evaluationId, String jobType) {
         String jobKey = EvalScheduledJob.encodeContextId(evaluationId, jobType);
         return scheduledInvocationManager.createDelayedInvocation(
-                timeService.newTime(executionDate.getTime()), 
+                executionDate.toInstant(), 
                 SCHEDULER_SPRING_BEAN_ID, jobKey);
     }
 
