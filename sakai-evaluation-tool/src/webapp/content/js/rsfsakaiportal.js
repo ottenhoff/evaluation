@@ -17,7 +17,20 @@ function setMainFrameHeightFixed(dokkument, outerid) {
 	// this tells us that the iframe in parent by the name of 'id' is the one who spawned us
 	if (typeof window.name != "undefined" && outerid != window.name) return;
 
-	var frame = parent.document.getElementById(outerid);
+    if (typeof evalsys !== "undefined" && typeof evalsys.resizeEmbeddedFrame === "function") {
+        evalsys.resizeEmbeddedFrame({ extra: 20 });
+        return;
+    }
+
+	var frame = null;
+    try {
+        frame = window.frameElement;
+        if (outerid && frame && frame.id && outerid !== frame.id) {
+            frame = null;
+        }
+    } catch (e) {
+        frame = null;
+    }
 	if (frame) {
       var objToResize = (frame.style) ? frame.style : frame;
       var newHeight = RSF.computeDocumentHeight(dokkument);
