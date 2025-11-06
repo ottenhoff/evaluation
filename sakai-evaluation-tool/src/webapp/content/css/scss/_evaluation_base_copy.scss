@@ -9,7 +9,6 @@ DIV#itemTable {
   border: 1px solid var(--sakai-border-color, #dfdfdf);
   margin: .5em 0;
   padding: 0 .5em;
-  background-color: var(--sakai-surface-subtle, #f5f5f5);
   color: var(--sakai-surface-subtle-text, inherit);
 }
 
@@ -18,7 +17,6 @@ DIV#itemTableBlock {
   border: 1px solid var(--sakai-border-color, #dfdfdf);
   margin: .5em 0;
   padding: 0 .5em;
-  background-color: var(--sakai-surface-subtle, #f5f5f5);
   color: var(--sakai-surface-subtle-text, inherit);
 }
 
@@ -32,13 +30,7 @@ DIV.itemList {
 
 /*a sortable item*/
 DIV.itemRow {
-  width: 100%;
-  padding: 0;
-  margin: .3em 0;
   cursor: move;
-  background: var(--bs-body-bg, #fff);
-  border: 1px solid var(--bs-border-color, #ced4da);
-  border-radius: var(--bs-border-radius, .375rem);
 }
 
 /*a sortable block item*/
@@ -50,12 +42,6 @@ DIV.itemRowBlock {
   background: var(--bs-body-bg, #fff);
   border: 1px solid var(--bs-border-color, #ced4da);
   border-radius: var(--bs-border-radius, .375rem);
-}
-
-/*all rows of an item*/
-.itemRow div {
-  padding: .2em;
-  vertical-align: middle;
 }
 
 /*all rows of a block item*/
@@ -257,7 +243,6 @@ div.scaleDesc {
 .summaryBox {
   border: var(--bs-border-width, 1px) solid var(--bs-border-color, #ced4da);
   border-radius: var(--bs-border-radius, .5rem);
-  background-color: var(--bs-body-bg, #fff);
   margin-bottom: 1rem;
   padding: 1rem;
 }
@@ -371,11 +356,6 @@ ol.summaryEvaluateList {
   border: 1px solid var(--sakai-border-color, #dfdfdf);
 }
 
-.itemListNew li:hover .itemScalePanel {
-  border: 1px solid var(--sakai-border-color, #dfdfdf);
-  background: var(--bs-body-bg, #fff);
-}
-
 .itemListEval li {
   list-style: none;
 }
@@ -409,24 +389,50 @@ ol.summaryEvaluateList {
 }
 
 .itemListEval label {
-  color: var(--bs-body-color, #212529);
 }
 
-.itemListEval label:hover {
-  color: var(--bs-emphasis-color, #000);
-}
 
 .itemScalePanel {
-  height: 31px;
   border: 1px solid var(--sakai-border-color, #dfdfdf);
+  width: 100%;
 }
 
-.itemScalePanel:hover {
-  border: 1px solid var(--bs-border-color, #ced4da);
+.itemScalePanel tr {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
 }
 
 .itemScalePanel td {
   padding: .3em .5em;
+  border: 0;
+  width: auto !important;
+}
+
+.itemScalePanel td.itemScalePanelNACell,
+.itemScalePanel td.compactDisplayStartGeneric,
+.itemScalePanel td.compactDisplayEndGeneric {
+  display: flex;
+  align-items: center;
+}
+
+.itemScalePanel td.itemScalePanelNACell {
+  grid-column: 1 / span 3;
+}
+
+.itemScalePanel td.compactDisplayStartGeneric {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.itemScalePanel td.compactDisplayEndGeneric {
+  grid-column: 3;
+  grid-row: 2;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .itemScalePanel .compactDisplayStart {
@@ -445,24 +451,30 @@ ol.summaryEvaluateList {
 
 .itemScalePanel td.idealScale {
   padding: 0 !important;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .itemScalePanel td.idealScale div {
   margin: 0;
+  width: 100%;
 }
 
 .itemScalePanel td.idealScale label {
   -moz-border-radius: .5em;
   -webkit-border-radius: .5em;
   text-align: center;
-  display: inline-block;
-  width: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   border: none;
 }
 
 .itemScalePanel td.idealScale label input {
-  margin: 3px 0px !important;
+  margin: 0 !important;
 }
 
 .itemScalePanel td.idealScale .scaleChoiceColored label:hover {
@@ -475,15 +487,18 @@ ol.summaryEvaluateList {
 
 .scaleChoiceColored {
   width: 100%;
-  display: block;
-  position: absolute;
-  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
   background-color: transparent;
   padding-top: 1px;
 }
 
 .scaleChoiceNotColored {
   padding-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
 }
 
 .scaleChoiceNotColored .scaleItemLabelSelected {
@@ -496,19 +511,6 @@ ol.summaryEvaluateList {
 
 .itemScalePanelNACell {
   background: transparent !important;
-}
-
-.idealScaleBack {
-  width: 100%;
-  display: block;
-  position: absolute;
-  z-index: 5;
-}
-
-.idealScaleBack img {
-  width: 100%;
-  height: 29px;
-  overflow: hidden;
 }
 
 .fullVertical ol li {
@@ -553,11 +555,6 @@ td.fullDisplayHorizontalColoredWrapper {
 
 .fullDisplayHorizontalScale .labelSelected {
   background-color: var(--bs-warning-bg-subtle, rgba(255, 193, 7, 0.15));
-}
-
-.itemsListOddLine .fullDisplayHorizontalScale .labelSelected, .fullDisplayHorizontalColored .labelSelected,
-.itemsListOddLine .fullDisplayHorizontalScale span:hover, .fullDisplayHorizontalColored span:hover {
-  background-color: var(--bs-body-bg, #fff);
 }
 
 .fullDisplayHorizontalScale .labelSelected, .fullDisplayHorizontalColored .labelSelected {
@@ -647,7 +644,6 @@ div.fullVertical {
     width: 100%;
     justify-content: space-between;
     border: 1px solid var(--sakai-border-color, #dfdfdf);
-    background-color: var(--bs-body-bg, #fff);
   }
 
   .fullDisplayHorizontalScale td label {
@@ -657,6 +653,47 @@ div.fullVertical {
 
   .fullDisplayHorizontalScale td input[type="radio"] {
     flex: 0 0 auto;
+  }
+
+  .itemScalePanel {
+    width: 100% !important;
+  }
+
+  .itemScalePanel tr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    width: 100%;
+  }
+
+  .itemScalePanel td {
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+    padding: .25rem 0;
+    border: 0;
+  }
+
+  .itemScalePanel td.itemScalePanelNACell {
+    order: 1;
+  }
+
+  .itemScalePanel td.compactDisplayStartGeneric {
+    order: 2;
+    flex: 1 1 45%;
+    justify-content: flex-start;
+  }
+
+  .itemScalePanel td.compactDisplayEndGeneric {
+    order: 3;
+    flex: 1 1 45%;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .itemScalePanel td.idealScale {
+    order: 4;
+    width: 100% !important;
   }
 }
 
@@ -736,9 +773,9 @@ remove input width in template and use these instead
 
 .blockChoiceColored {
   width: 100%;
-  display: block;
-  position: absolute;
-  z-index: 6;
+  display: flex;
+  justify-content: center;
+  gap: .75rem;
   background-color: transparent;
 }
 
@@ -1380,11 +1417,30 @@ a.less { background: none; padding-right: 0; padding-left: 0; }
   font-size: 0.9em;
 }
 
-.highlightPanel {
-  background-color: var(--sakai-surface-subtle, #f5f5f5);
-  border: 1px solid var(--sakai-border-color, #dfdfdf);
-  border-radius: var(--bs-border-radius, .375rem);
-  padding: 1rem;
+.eval-highlight {
+  border: 1px solid var(--sakai-border-color, var(--bs-border-color, rgba(33, 37, 41, 0.15)));
+}
+
+input.btn-link.link-button {
+  background-color: transparent;
+  border: 0;
+  color: var(--bs-link-color, #0d6efd);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+input.btn-link.link-button:hover,
+input.btn-link.link-button:focus {
+  color: var(--bs-link-hover-color, #0a58ca);
+  text-decoration: underline;
+  box-shadow: none;
+}
+
+input.btn-link.link-button:focus-visible {
+  outline: 2px solid var(--bs-link-color, #0d6efd);
+  outline-offset: 2px;
 }
 
 td.alignCenter,
