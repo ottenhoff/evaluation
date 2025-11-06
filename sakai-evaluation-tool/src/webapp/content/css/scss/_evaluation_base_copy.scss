@@ -1426,7 +1426,7 @@ a.less { background: none; padding-right: 0; padding-left: 0; }
 input.btn-link.link-button {
   background-color: transparent;
   border: 0;
-  color: var(--bs-link-color, #0d6efd);
+  color: var(--link-color, var(--bs-link-color, #0d6efd));
   cursor: pointer;
   font: inherit;
   padding: 0;
@@ -1435,13 +1435,13 @@ input.btn-link.link-button {
 
 input.btn-link.link-button:hover,
 input.btn-link.link-button:focus {
-  color: var(--bs-link-hover-color, #0a58ca);
+  color: var(--link-hover-color, var(--link-color, var(--bs-link-color, #0d6efd)));
   text-decoration: underline;
   box-shadow: none;
 }
 
 input.btn-link.link-button:focus-visible {
-  outline: 2px solid var(--bs-link-color, #0d6efd);
+  outline: 2px solid var(--link-color, var(--bs-link-color, #0d6efd));
   outline-offset: 2px;
 }
 

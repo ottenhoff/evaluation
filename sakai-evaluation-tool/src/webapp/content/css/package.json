@@ -1,0 +1,11 @@
+{
+  "name": "evaluation-tool-styles",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build-css": "node scripts/build-css.js"
+  },
+  "devDependencies": {
+    "sass": "^1.79.5"
+  }
+}

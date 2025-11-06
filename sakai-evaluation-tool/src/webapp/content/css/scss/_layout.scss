@@ -282,18 +282,22 @@
     }
     
     .compact {
-      overflow: hidden;
-      
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow: visible;
+
       .title {
-        float: left;
+        float: none;
         width: auto !important;
-        margin-top: 6px;
+        margin: 0;
       }
       .content {
         overflow: visible;
       }
       .content table {
-        float: right;
+        float: none;
+        width: 100%;
       }
     }
 
