@@ -58,11 +58,15 @@
 <body>
 <div class="portletBody">
 	<div rsf:id="navIntraTool:" class="navIntraTool"/> 
-	<ul class="breadCrumb">
-    <li><a rsf:id="summary-link" href="summary.html">Summary</a></li>
-    <li><a rsf:id="control-templates-link" href="control_templates.html">My Templates</a></li>
-    <li class="lastCrumbNoFloat" rsf:id="modify-template-title">Edit Template</li>
-  </ul>
+	<div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+	  <nav aria-label="breadcrumb" class="flex-grow-1">
+	    <ol class="breadcrumb mb-0">
+	      <li class="breadcrumb-item"><a rsf:id="summary-link" href="summary.html">Summary</a></li>
+	      <li class="breadcrumb-item"><a rsf:id="control-templates-link" href="control_templates.html">My Templates</a></li>
+	      <li class="breadcrumb-item active" aria-current="page">Edit Template</li>
+	    </ol>
+	  </nav>
+	</div>
   <div rsf:id="message-for:*" class="alertMessage" id="messageInformation">
     <ul style="margin:0px;">
       <li>Message for user here</li>
@@ -102,7 +106,7 @@
     <div style="padding:.3em 0;">
       <form rsf:id="modifyFormRows" name="modify_form_rows" method="post">
         <input rsf:id="hiddenBtn" type="submit" id="hiddenBtn" style="display:none;" />
-        <div class="itemOperations" id="orderInputs">
+        <div class="item-operations alert alert-secondary d-flex flex-wrap align-items-center gap-2 py-2 px-3" id="orderInputs">
           <input rsf:id="revertOrderButton" type="button" disabled="disabled" value="Revert Order" id="revertOrderButton" />
           <input rsf:id="saveReorderButton" type="submit" disabled="disabled" value="Save Order" id="saveReorderButton" />
           <span rsf:id="orderingInstructions" class="instruction" > Drag the items to reorder them and click save to set the new order or use the pulldowns to reorder a single item </span> </div>
@@ -254,7 +258,7 @@
 
       <span rsf:id="total-rows" class="totalRows" style="display:none"></span>
       <div>
-        <div class="itemOperations" id="blockInputs">
+        <div class="item-operations alert alert-secondary d-flex flex-wrap align-items-center gap-2 py-2 px-3" id="blockInputs">
           <form rsf:id="createBlockForm" id="createBlockForm" name="create_block_form" method="get" target="_self" action="modify_block.html" class="inlineForm">
             <input type="hidden" name="templateItemIds"/>
             <input rsf:id="createBlockBtn" name="create_block_btn" id="createBlockBtn" type="button" value="Create Group" disabled="disabled" />
