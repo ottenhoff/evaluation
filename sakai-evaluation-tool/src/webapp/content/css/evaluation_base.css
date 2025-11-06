@@ -359,10 +359,10 @@ ol.summaryEvaluateList {
 }
 
 .itemListNew legend {
-  padding: .3em .7em;
-  color: var(--bs-warning-text-emphasis, #664d03);
-  font-size: 110%;
-  margin-left: 1em;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .itemListNew ol {
@@ -372,6 +372,8 @@ ol.summaryEvaluateList {
 
 .itemListNew li {
   border: 1px solid var(--sakai-border-color, #dfdfdf);
+  padding: 1rem;
+  border-radius: var(--bs-border-radius, .375rem);
 }
 
 .itemListEval li {
