@@ -784,7 +784,6 @@ remove input width in template and use these instead
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: .75rem;
   background-color: transparent;
 }
 
@@ -817,7 +816,7 @@ label.blockItemLabel, label.blockItemLabelNA {
   -webkit-border-radius: .5em;
   text-align: center;
   display: inline-block;
-  width: 28px;
+  width: 25px;
 }
 
 label.blockItemLabel input, label.blockItemLabelNA input {
@@ -963,7 +962,6 @@ label.blockItemLabel:hover {
 }
 
 .lighthighlight {
-  color: var(--bs-emphasis-color, #000);
   padding-left: .5em;
 }
 
@@ -972,15 +970,6 @@ label.blockItemLabel:hover {
 .navIntraTool a.inactive {
   text-decoration: none;
   font-weight: bold;
-}
-
-form {
-  margin: 0;
-  display: inline;
-}
-
-.oddrow {
-  background-color: var(--bs-table-striped-bg, rgba(0, 0, 0, 0.05));
 }
 
 /*Special style to force divs to be able to work right when floating in all browsers*/
