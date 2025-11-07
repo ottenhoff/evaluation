@@ -7,6 +7,8 @@
 const fs = require("fs");
 const path = require("path");
 const sass = require("sass");
+const postcss = require("postcss");
+const prefixSelector = require("postcss-prefix-selector");
 
 const args = process.argv.slice(2);
 
@@ -33,7 +35,9 @@ const ensureDir = (dir) => {
   }
 };
 
-const compile = () => {
+const PREFIX = ".Mrphs-sakai-rsf-evaluation";
+
+const compile = async () => {
   const entryFile = path.resolve(__dirname, "../scss/evaluation_base.scss");
   const result = sass.compile(entryFile, {
     loadPaths: [path.resolve(__dirname, "../scss")],
@@ -41,9 +45,25 @@ const compile = () => {
     sourceMap: sourceMap
   });
 
+  const prefixed = await postcss([
+    prefixSelector({
+      prefix: PREFIX,
+      transform: (prefix, selector, prefixed) => {
+        if (selector.startsWith(prefix)) {
+          return selector;
+        }
+        // Avoid prefixing @ rules like @font-face
+        if (selector.startsWith("@")) {
+          return selector;
+        }
+        return prefixed;
+      }
+    })
+  ]).process(result.css, { from: undefined });
+
   ensureDir(outputDir);
   const cssOutputPath = path.join(outputDir, "evaluation_base.css");
-  fs.writeFileSync(cssOutputPath, result.css, "utf8");
+  fs.writeFileSync(cssOutputPath, prefixed.css, "utf8");
 
   if (sourceMap && result.sourceMap) {
     const mapPath = `${cssOutputPath}.map`;
@@ -51,4 +71,7 @@ const compile = () => {
   }
 };
 
-compile();
+compile().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

@@ -54,6 +54,18 @@ function addSakaiRSFDomModifyHook(frameID) {
   */
 	MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
+    var shouldAttachObserver = false;
+    try {
+        if (window.frameElement) {
+            shouldAttachObserver = !frameID || frameID === window.frameElement.id;
+        }
+    } catch (e) {
+        shouldAttachObserver = false;
+    }
+    if (!shouldAttachObserver) {
+        return;
+    }
+
 	var observer = new MutationObserver(function(mutations, observer) {
         setMainFrameHeightFixed(document, frameID);
         setFocus(focus_path);

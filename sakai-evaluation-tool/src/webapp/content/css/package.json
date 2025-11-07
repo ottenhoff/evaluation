@@ -6,6 +6,8 @@
     "build-css": "node scripts/build-css.js"
   },
   "devDependencies": {
+    "postcss": "^8.4.38",
+    "postcss-prefix-selector": "^1.16.0",
     "sass": "^1.79.5"
   }
 }
