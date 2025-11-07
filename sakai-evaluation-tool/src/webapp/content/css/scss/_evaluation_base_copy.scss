@@ -537,6 +537,13 @@ td.fullDisplayHorizontalColoredWrapper {
   white-space: normal;
 }
 
+.fullDisplayHorizontalScaleNaCell {
+  padding: 0;
+  border: 1px solid var(--bs-danger-border-subtle, rgba(220, 53, 69, 0.4));
+  border-radius: var(--bs-border-radius, .375rem);
+  background: transparent;
+}
+
 .fullDisplayHorizontal label {
   font-weight: 600;
 }
@@ -987,22 +994,6 @@ form {
   background: transparent;
 }
 
-.toggler {
-  /*the clickable target of a disclosure pair*/
-  cursor: pointer;
-  color: var(--bs-link-color, #0d6efd);
-  font-weight: bold;
-}
-
-.toggler:hover {
-  color: var(--bs-link-hover-color, #0a58ca);
-}
-
-/*generic odd line background*/
-.itemsListOddLine {
-  background-color: var(--bs-table-striped-bg, rgba(0, 0, 0, 0.05));
-}
-
 /*sakai fieldsets are invisible,complex forms in this tool have the following class to organize themselves visually*/
 .visibleFS {
   border: 1px solid var(--sakai-border-color, #dfdfdf);
@@ -1011,7 +1002,6 @@ form {
 
 .visibleFS legend {
   padding: .2em;
-  color: var(--bs-warning-text-emphasis, #664d03);
   margin-left: 1em;
   display: inline;
   width: auto;
@@ -1219,11 +1209,6 @@ a.less { background: none; padding-right: 0; padding-left: 0; }
   text-align: center;
 }
 
-/* Comment box warn */
-.commentWarn {
-  color: var(--bs-warning-text-emphasis, #664d03);
-}
-
 .previewEvalNote {
   padding: 5px;
   margin: 10px;
@@ -1370,10 +1355,8 @@ a.less { background: none; padding-right: 0; padding-left: 0; }
 .fake-fieldset .legend {
   left: 0.5em;
   top: -15px;
-  background: var(--bs-body-bg, #fff);
   position: absolute;
   font-weight: bold;
-  color: var(--bs-warning-text-emphasis, #664d03);
   font-size: 110%;
   margin-left: 32px;
   padding: 6px 10px;
