@@ -29,6 +29,7 @@ sakai-evaluation-tool/bin
 sakai-evaluation-tool/m2-target
 sakai-evaluation-tool/src/webapp/content/js/facebox/facebox_og.js
 sakai-evaluation-tool/src/webapp/content/css/node_modules
+sakai-evaluation-tool/src/target
 sakai-evaluation-tool/target
 sakai-evaluation-tool/overlays
 .directory
