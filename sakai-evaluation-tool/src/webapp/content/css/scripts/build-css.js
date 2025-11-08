@@ -38,7 +38,7 @@ const ensureDir = (dir) => {
 const PREFIX = ".Mrphs-sakai-rsf-evaluation";
 
 const compile = async () => {
-  const entryFile = path.resolve(__dirname, "../scss/evaluation_base.scss");
+  const entryFile = path.resolve(__dirname, "../scss/evaluation/index.scss");
   const result = sass.compile(entryFile, {
     loadPaths: [path.resolve(__dirname, "../scss")],
     style: "expanded",
