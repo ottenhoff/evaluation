@@ -604,13 +604,7 @@ evalsys.initSummary = function() {
 };
 
 evalsys.initControlScales = function() {
-    evalsys.initFacebox({verticalCenterOnClick: true, minWidth: 740});
-    jQuery('a.preview_scale').facebox();
-    /* $(".preview_scale").click(function(event) {
-        //event.preventDefault();
-        var previewUrl = $(this).attr("href");
-        alert("preview scale: "+previewUrl);
-    }); */
+    // No facebox previews; rely on normal navigation.
 };
 
 evalsys.initModifyScales = function() {
@@ -620,33 +614,6 @@ evalsys.initModifyScales = function() {
         // each time the text box is clicked on
         $(this).attr("maxlength", "250"); // force the input text boxes to 250 chars or less
     });
-
-    var $previewScaleLink = jQuery('a.preview_scale');
-    var originalUrl = $previewScaleLink.attr("href"); // store the url so we can append to it later
-
-    // NOTE: the order here matters (the order of the click events firing must be the one below first and THEN the facebox one)
-    $previewScaleLink.click(function(event) {
-        // Get the form elements from scale_ideal_container and scale_points_container
-        var $form = jQuery("form.scale_modify_form");
-        var formData = $form.find(".scale_points_container INPUT,.scale_ideal_container INPUT").serializeArray();
-        // now we extract the data from the array and make it into a query string to append on the URL
-        var scaleData = "";
-        for (var i = 0; i < formData.length; i++) {
-            var element = formData[i];
-            if (element["name"] == "modify-scale-points:1:list-control") {
-                if (i > 0) { scaleData += "&"; }
-                scaleData += "points=" + element["value"];
-            } else if (element["name"] == "scaleIdealRadio-selection") {
-                if (i > 0) { scaleData += "&"; }
-                scaleData += "ideal=" + element["value"];
-            }
-        }
-        var previewUrl = originalUrl+"?"+encodeURI(scaleData);
-        $previewScaleLink.attr("href", previewUrl);
-    });
-
-    evalsys.initFacebox({verticalCenterOnClick: false, minWidth: 740});
-    $previewScaleLink.facebox();
 };
 
 evalsys.initPreviewScales = function() {
