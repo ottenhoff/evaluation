@@ -84,6 +84,9 @@ public class ScaledRenderer implements ItemRenderer {
 
             // setup simple variables to make code more clear
             boolean colored = EvalConstants.ITEM_SCALE_DISPLAY_COMPACT_COLORED.equals(scaleDisplaySetting);
+            if (colored) {
+                compact.decorate(new UIStyleDecorator("compact-colored"));
+            }
 
             String compactDisplayStart = scaleOptions.get(0);
             String compactDisplayEnd = scaleOptions.get(optionCount - 1);
