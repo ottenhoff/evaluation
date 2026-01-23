@@ -245,7 +245,7 @@
       </fieldset>
       <div class="d-flex flex-wrap justify-content-end gap-2">
         <input rsf:id="save-item-action" type="submit" value="Save item" class="btn btn-primary" accesskey="s" />
-        <input rsf:id="cancel-button" type="button" value="Cancel" class="btn btn-outline-secondary" accesskey="x" onclick="if (typeof window.jQuery !== 'undefined') { window.jQuery(document).trigger('close.facebox'); return false; } window.history.back(); return false;" />
+        <input rsf:id="cancel-button" type="button" value="Cancel" class="btn btn-outline-secondary" accesskey="x" onclick="if (window.history.length > 1) { window.history.back(); return false; } if (document.referrer) { window.location.href=document.referrer; return false; } window.close(); return false;" />
       </div>
     </form>
   </div>

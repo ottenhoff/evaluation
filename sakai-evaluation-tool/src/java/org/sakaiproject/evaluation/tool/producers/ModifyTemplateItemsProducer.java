@@ -468,7 +468,11 @@ public class ModifyTemplateItemsProducer extends EvalCommonProducer implements V
                     if (childList.size() > 0) {
                         UIBranchContainer blockChildren = UIBranchContainer.make(itemBranch, "block-children:", Integer.toString(blockChildNum));
                         UIMessage.make(itemBranch, "modifyblock-items-list-instructions",
-                        "modifyblock.page.instructions");
+                                "modifyblock.page.instructions");
+                        UIInternalLink.make(blockChildren, "add-block-new-item-link", UIMessage.make("modifytemplate.group.add.newitem"),
+                                new ItemViewParameters(ModifyItemProducer.VIEW_ID, EvalConstants.ITEM_TYPE_SCALED, templateId, null, templateItem.getId()));
+                        UIInternalLink.make(blockChildren, "add-block-existing-item-link", UIMessage.make("modifytemplate.group.add.existingitem"),
+                                new org.sakaiproject.evaluation.tool.viewparams.ChooseItemViewParameters(ExistingItemsProducer.VIEW_ID, templateId, null, templateItem.getId()));
                         blockChildNum++;
                         int orderNo = 0;
 

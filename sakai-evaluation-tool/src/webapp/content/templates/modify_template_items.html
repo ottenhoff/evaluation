@@ -28,7 +28,6 @@
     <!-- end standard on all pages -->
 
     <script src="/sakai-evaluation-tool/content/js/jquery/jquery-1.4.4.min.js" type="text/javascript"></script>
-    <script src="/sakai-evaluation-tool/content/js/facebox.stub.js" type="text/javascript"></script>
     <script src="/sakai-evaluation-tool/content/js/jquery/jquery-ui-1.8.all.min.js" type="text/javascript"></script>
     <script src="/sakai-evaluation-tool/webjars/autosize/3.0.21/dist/autosize.min.js" type="text/javascript"></script>
     <script type="text/javascript" language="JavaScript" src="/sakai-evaluation-tool/content/js/jquery/form.js"></script>
@@ -158,8 +157,8 @@
               </div>
                             <div rsf:id="block-children:" id="block-children:" class="itemLine3 border-top p-3">
                	<div id="itemTableBlock" class="itemTableBlock rounded-3 p-3 mt-3">
-              			<a rsf:id="msg=modifytemplate.group.add.newitem" class="addItem" rel="faceboxAddNewGroupItem" href="#">Add new item</a>
-                      <a rsf:id="msg=modifytemplate.group.add.existingitem" class="dropItem addItem" rel="faceboxAddGroupItems" href="#"><span class="bi bi-file-earmark-plus" aria-hidden="true"></span> Add existing item</a>  &nbsp;&nbsp; | &nbsp;
+              			<a rsf:id="add-block-new-item-link" class="addItem" href="#">Add new item</a>
+                      <a rsf:id="add-block-existing-item-link" class="dropItem addItem" href="#"><span class="bi bi-file-earmark-plus" aria-hidden="true"></span> Add existing item</a>  &nbsp;&nbsp; | &nbsp;
 			 <span  rsf:id="modifyblock-items-list-instructions" class="instructionText">Drag and drop to rearrange the blocked items</span>
 			<div rsf:id="itemRowBlock:" id="itemRowBlock::1:" class="itemRowBlock inlineEditable border rounded-3 p-2 mb-2 w-100">
 							<input type="hidden" rsf:id="hidden-item-id" name="hidden-item-id" value="0" id="itemRowBlock::1:hidden-item-id" />
@@ -168,7 +167,7 @@
 							
 							<span class="itemRight">
 								&nbsp;
-								<a rsf:id="modify-row-item" href="modify_scaled.html" rel="childEdit"><span class="bi bi-pencil" aria-hidden="true"></span><span class="visually-hidden">Edit</span></a>
+								<a rsf:id="modify-row-item" href="modify_scaled.html"><span class="bi bi-pencil" aria-hidden="true"></span><span class="visually-hidden">Edit</span></a>
                                 <a rsf:id="child-ungroup-item" href="remove_question.html" rel="childUngroup">Ungroup</a>
                                 <a rsf:id="child-remove-item" href="remove_question.html" rel="childRemove"><span class="bi bi-x-lg" aria-hidden="true"></span><span class="visually-hidden">Remove</span></a>
 <span rsf:id="remove-row-item-disabled" >Remove</span>
@@ -208,8 +207,8 @@
               </div>
                             <div rsf:id="block-children:" id="block-children:" class="itemLine3 border-top p-3">
                <div id="itemTableBlock" class="itemTableBlock rounded-3 p-3 mt-3">
-              			<a rsf:id="msg=modifytemplate.group.add.newitem" class="addItem" rel="faceboxAddNewGroupItem" href="#">Add new item</a>
-                  <a rsf:id="msg=modifytemplate.group.add.existingitem" class="dropItem addItem" rel="faceboxAddGroupItems" href="#"><span class="bi bi-file-earmark-plus" aria-hidden="true"></span> Add existing item</a>  &nbsp;&nbsp; | &nbsp;
+                  <a rsf:id="add-block-new-item-link" class="addItem" href="#">Add new item</a>
+                  <a rsf:id="add-block-existing-item-link" class="dropItem addItem" href="#"><span class="bi bi-file-earmark-plus" aria-hidden="true"></span> Add existing item</a>  &nbsp;&nbsp; | &nbsp;
 			 <span rsf:id="modifyblock-items-list-instructions" class="instructionText">Drag and drop to rearrange the blocked items</span>
 		<div rsf:id="itemRowBlock:" id="itemRowBlock::1:" class="itemRowBlock inlineEditable border rounded-3 p-2 mb-2 w-100">
 							<input type="hidden" rsf:id="hidden-item-id" name="hidden-item-id" value="0" id="itemRow::1:hidden-item-id" />
@@ -219,7 +218,7 @@
 							<span class="itemRight">
 								
 								&nbsp;
-								<a rsf:id="modify-row-item" href="modify_scaled.html" rel="childEdit"><span class="bi bi-pencil" aria-hidden="true"></span><span class="visually-hidden">Edit</span></a>
+								<a rsf:id="modify-row-item" href="modify_scaled.html"><span class="bi bi-pencil" aria-hidden="true"></span><span class="visually-hidden">Edit</span></a>
                                 <a rsf:id="child-ungroup-item" href="remove_question.html" rel="childUngroup">Ungroup</a>
                                 <a rsf:id="child-remove-item" href="remove_question.html" rel="childRemove"><span class="bi bi-x-lg" aria-hidden="true"></span><span class="visually-hidden">Remove</span></a>
 <span rsf:id="remove-row-item-disabled" >Remove</span>
@@ -270,7 +269,7 @@
         <div class="item-operations alert alert-secondary d-flex flex-wrap align-items-center gap-2 py-2 px-3" id="blockInputs">
           <form rsf:id="createBlockForm" id="createBlockForm" name="create_block_form" method="get" target="_self" action="modify_block.html" class="inlineForm">
             <input type="hidden" name="templateItemIds"/>
-            <input rsf:id="createBlockBtn" name="create_block_btn" id="createBlockBtn" type="button" value="Create Group" disabled="disabled" />
+            <input rsf:id="createBlockBtn" name="create_block_btn" id="createBlockBtn" type="submit" value="Create Group" disabled="disabled" />
           </form>
           <span rsf:id="blockInstructions"class="instructionText"> Check the boxes next to a set of items and click Create Block to make a block with the chosen items </span> </div>
         <div class="cleaner">&nbsp;</div>
